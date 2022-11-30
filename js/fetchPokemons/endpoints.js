@@ -38,10 +38,18 @@ async function handlePokemonList() {
 
   btn.addEventListener("click", async () => {
     console.log("aaaaaa");
-    currentDataPage = await getMoreData(async () => {
-      return currentDataPage;
-    });
-    addPokemonsInThePage(currentDataPage);
+  });
+
+  window.addEventListener("scroll", async () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+    if (scrollTop + clientHeight >= scrollHeight - 5) {
+      console.log("uga");
+      currentDataPage = await getMoreData(async () => {
+        return currentDataPage;
+      });
+      addPokemonsInThePage(currentDataPage);
+    }
   });
 }
 
