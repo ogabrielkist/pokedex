@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      img {
+        max-width: 100%;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      ul,
+      li {
+        list-style: none;
+        padding: 0;
+      }
+
+      #list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 100px);
+        gap: 1rem;
+        width: 100%;
+      }
+      #list li {
+        padding: 1rem;
+        background-color: #eee;
+        display: flex;
+        max-width: max-content;
+        flex-direction: column;
+      }
+
+      li img {
+        width: 32px;
+        height: 32px;
+      }
+    </style>
+    <ul id="list"></ul>
+    <button id="btn">Carregar mais</button>
+    <script src="./js/fetchPokemons/endpoints.js"></script>
+  </body>
+</html>
