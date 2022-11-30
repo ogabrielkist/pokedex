@@ -1,0 +1,6 @@
+/* GLOBAL */
+@import "./global/reset.css";
+
+/* COMPONENTS */
+@import "./components/pokedex.css";
+@import "./components/pokemon-type.css";
