@@ -49,12 +49,7 @@ function createPokemonCard(img, name, types) {
       <img src="${img}">
       <span>${name}</span>
       ${types
-        .map(
-          ({ type }) =>
-            `<span class="pokemon-type-text ${type.name.toLowerCase()}-bg">${
-              type.name
-            }</span>`
-        )
+        .map(({ type }) => `<span class="pokemon-type-text ${type.name.toLowerCase()}-bg">${type.name}</span>`)
         .join("")} 
     </li>
   `;
@@ -67,11 +62,7 @@ async function addPokemonsInThePage({ results }) {
     const data = await fetch(url);
     const json = await data.json();
 
-    list.innerHTML += createPokemonCard(
-      json.sprites.front_default,
-      name,
-      json.types
-    );
+    list.innerHTML += createPokemonCard(json.sprites.front_default, name, json.types);
   });
 }
 
@@ -82,17 +73,14 @@ async function handlePokemonSearch(event) {
   const error = document.querySelector(".error");
 
   if (!typedPokemon.length) {
-    error.innerText =
-      "Hey! you forgot to insert the name of the pokemon you want.";
+    error.innerText = "Hey! you forgot to insert the name of the pokemon you want.";
     handlePokemonList();
     return;
   }
 
   enableLoading();
   try {
-    const data = await fetch(
-      "https://pokeapi.co/api/v2/pokemon/" + typedPokemon
-    );
+    const data = await fetch("https://pokeapi.co/api/v2/pokemon/" + typedPokemon);
     json = await data.json();
 
     showSinglePokemonCard(json);
@@ -112,11 +100,7 @@ function removeErrorMessage() {
 function showSinglePokemonCard(data) {
   const list = document.querySelector("#list");
 
-  list.innerHTML = createPokemonCard(
-    data.sprites.front_default,
-    data.name,
-    data.types
-  );
+  list.innerHTML = createPokemonCard(data.sprites.front_default, data.name, data.types);
 
   const showAllbtn = document.querySelector(".showall");
   showAllbtn.style.display = "block";
@@ -124,7 +108,7 @@ function showSinglePokemonCard(data) {
 
 function sendDataOfPokemonToModal(event) {
   const pokeValue = event.currentTarget.querySelector("span").innerText;
-  console.log(pokeValue);
+  buildModal(pokeValue);
 }
 
 const form = document.querySelector(".searchform");

@@ -1,7 +1,7 @@
 // buildModal("magikarp");
 // buildModal("charizard");
 // buildModal("gengar");
-buildModal("eevee");
+// buildModal("eevee");
 
 async function buildModal(pokemonName) {
   HandleSelectedPokemon(pokemonName);
