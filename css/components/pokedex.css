@@ -316,7 +316,7 @@
     font-size: 4rem;
   }
 
-  .pokedex-image {
+  .pokedex-image img {
     width: 50%;
   }
 
@@ -370,6 +370,10 @@
   .pokedex-move ul {
     font-size: 0.85rem;
     gap: 5px;
+  }
+
+  .pokedex-move li {
+    padding: 5px 10px;
   }
 
   .pokedex-weakness ul {
