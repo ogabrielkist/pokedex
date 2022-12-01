@@ -43,6 +43,16 @@ async function handlePokemonList() {
   disableLoading();
 }
 
+function createPokemonCard(img, name, types) {
+  return `
+    <li onclick="sendDataOfPokemonToModal(event)">
+      <img src="${img}">
+      <span>${name}</span>
+      ${types.map(({ type }) => `<span>${type.name}</span>`).join("")} 
+    </li>
+  `;
+}
+
 async function addPokemonsInThePage({ results }) {
   const list = document.querySelector("#list");
 
@@ -50,10 +60,11 @@ async function addPokemonsInThePage({ results }) {
     const data = await fetch(url);
     const json = await data.json();
 
-    list.innerHTML += `<li onclick="sendDataOfPokemonToModal(event)"> 
-                        <img src="${json.sprites.front_default}" alt="">
-                        <span>${name}</span>
-                      </li>`;
+    list.innerHTML += createPokemonCard(
+      json.sprites.front_default,
+      name,
+      json.types
+    );
   });
 }
 
@@ -70,6 +81,7 @@ async function handlePokemonSearch(event) {
     return;
   }
 
+  enableLoading();
   try {
     const data = await fetch(
       "https://pokeapi.co/api/v2/pokemon/" + typedPokemon
@@ -79,6 +91,8 @@ async function handlePokemonSearch(event) {
     showSinglePokemonCard(json);
   } catch (e) {
     error.innerText = `Error: Pokemon with the name "${typedPokemon}" not found`;
+  } finally {
+    disableLoading();
   }
 }
 
@@ -90,10 +104,12 @@ function removeErrorMessage() {
 
 function showSinglePokemonCard(data) {
   const list = document.querySelector("#list");
-  list.innerHTML = `<li onclick="sendDataOfPokemonToModal(event)"> 
-                     <img src="${data.sprites.front_default}" alt="">
-                     <span>${data.name}</span>
-                    </li>`;
+
+  list.innerHTML = createPokemonCard(
+    data.sprites.front_default,
+    data.name,
+    data.types
+  );
 
   const showAllbtn = document.querySelector(".showall");
   showAllbtn.style.display = "block";
@@ -118,6 +134,7 @@ btn.addEventListener("click", (event) => {
 
 const showAllbtn = document.querySelector(".showall");
 showAllbtn.addEventListener("click", async () => {
+  enableLoading();
   showAllbtn.style.display = "none";
 
   let currentDataPage = await searchAllPokemons();
@@ -125,6 +142,7 @@ showAllbtn.addEventListener("click", async () => {
   list.innerHTML = "";
 
   addPokemonsInThePage(currentDataPage);
+  disableLoading();
 });
 
 handlePokemonList();
