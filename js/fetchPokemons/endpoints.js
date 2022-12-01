@@ -23,32 +23,26 @@ async function getMoreData(currentDataCallback) {
   return json;
 }
 
-// searchPokemonById("charizard");
-// searchAllPokemons();
 async function handlePokemonList() {
   let currentDataPage = await searchAllPokemons();
 
-  const list = document.querySelector("#list");
-  const btn = document.querySelector("#btn");
   addPokemonsInThePage(currentDataPage);
 
-  // currentDataPage.results.forEach(({ name }) => {
-  //   list.innerHTML += `<li>${name}</li>`;
-  // });
-
-  btn.addEventListener("click", async () => {
-    console.log("aaaaaa");
-  });
-
+  let wait = false;
   window.addEventListener("scroll", async () => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
-    if (scrollTop + clientHeight >= scrollHeight - 5) {
+    if (scrollTop + clientHeight >= scrollHeight - 5 && !wait) {
       console.log("uga");
-      currentDataPage = await getMoreData(async () => {
-        return currentDataPage;
-      });
-      addPokemonsInThePage(currentDataPage);
+
+      wait = true;
+      setTimeout(async () => {
+        wait = false;
+        currentDataPage = await getMoreData(async () => {
+          return currentDataPage;
+        });
+        addPokemonsInThePage(currentDataPage);
+      }, 500);
     }
   });
 }
