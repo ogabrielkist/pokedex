@@ -37,6 +37,7 @@
         grid-template-columns: repeat(auto-fit, minmax(auto, 260px));
         gap: 30px 60px;
         width: 100%;
+        justify-content: center;
       }
       #list li {
         padding: 1rem;
@@ -101,7 +102,41 @@
       #list li {
         cursor: pointer;
       }
+
+      .loading {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 140px;
+        height: 140px;
+        background-color: #eee;
+        padding: 1rem;
+        border-radius: 50%;
+      }
+
+      .loading-wrapper {
+        display: none;
+      }
+
+      .loading-wrapper.ativo {
+        position: fixed;
+        z-index: 20;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: grid;
+        place-items: center;
+      }
+      .loading img {
+        width: 80%;
+      }
     </style>
+    <div class="loading-wrapper">
+      <div class="loading">
+        <img src="./img/pikachu-running.gif" alt="" /><span>Carregando...</span>
+      </div>
+    </div>
     <form class="searchform" onsubmit="">
       <div class="searchWrapper">
         <label for="searchbar">Search a pokemon</label>
@@ -120,6 +155,7 @@
     <button class="showall" onclick="">Show All</button>
 
     <ul id="list"></ul>
+    <script src="./js/helper/loading.js"></script>
     <script src="./js/fetchPokemons/endpoints.js"></script>
   </body>
 </html>

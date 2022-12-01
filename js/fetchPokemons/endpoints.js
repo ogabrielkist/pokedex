@@ -14,6 +14,8 @@ async function getMoreData(currentDataCallback) {
 }
 
 async function handlePokemonList() {
+  enableLoading();
+
   const list = document.querySelector("#list");
   list.innerHTML = "";
 
@@ -26,6 +28,7 @@ async function handlePokemonList() {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
 
     if (scrollTop + clientHeight >= scrollHeight - 5 && !wait) {
+      enableLoading();
       wait = true;
       setTimeout(async () => {
         wait = false;
@@ -33,9 +36,11 @@ async function handlePokemonList() {
           return currentDataPage;
         });
         addPokemonsInThePage(currentDataPage);
+        disableLoading();
       }, 500);
     }
   });
+  disableLoading();
 }
 
 async function addPokemonsInThePage({ results }) {
