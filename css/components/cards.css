@@ -1,6 +1,7 @@
 .home {
   min-height: 100vh;
   padding: 3.75rem 1.25rem;
+  background-color: #f8f8f8;
 }
 
 .logo {
@@ -20,16 +21,24 @@
   justify-content: center;
 }
 #list li {
-  padding: 2rem;
   background-color: #fff;
+  box-shadow: 0px 4px 3px rgba(80, 139, 147, 0.25);
+
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   text-transform: uppercase;
   align-items: center;
   min-height: 15.3125rem;
-  border-radius: 5px;
+  border-radius: 10px;
 
-  box-shadow: 0px 4px 13px rgba(80, 139, 147, 0.25);
+  transition: 0.3s ease;
+  animation: fade 1s ease;
+}
+
+#list li:hover {
+  transform: scale(1.06);
+  box-shadow: 0px 4px 16px rgba(80, 139, 147, 0.25);
 }
 
 #list li span {
