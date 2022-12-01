@@ -1,23 +1,32 @@
-body {
+.home {
   min-height: 100vh;
+  padding: 3.75rem 1.25rem;
+}
+
+.logo {
+  display: block;
+  width: 100vw;
+  max-width: 300px;
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
 }
 #list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(auto, 260px));
-  gap: 30px 60px;
+  gap: 1.875rem 3.75rem;
   width: 100%;
   max-width: 900px;
   margin: 0 auto;
   justify-content: center;
 }
 #list li {
-  padding: 1rem;
+  padding: 2rem;
   background-color: #fff;
   display: flex;
   flex-direction: column;
   text-transform: uppercase;
   align-items: center;
-  min-height: 245px;
+  min-height: 15.3125rem;
   border-radius: 5px;
 
   box-shadow: 0px 4px 13px rgba(80, 139, 147, 0.25);

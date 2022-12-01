@@ -14,51 +14,36 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <style>
-      * {
-        box-sizing: border-box;
-        font-family: "montserrat", Arial, Helvetica, sans-serif;
-      }
-      img {
-        max-width: 100%;
-      }
-      body {
-        margin: 0;
-        padding: 0;
-      }
-
-      ul,
-      li {
-        list-style: none;
-        padding: 0;
-      }
-    </style>
-    <div class="loading-wrapper">
+    <div class="loading-wrapper ativo">
       <div class="loading">
         <img src="./img/pikachu-running.gif" alt="" /><span>Carregando...</span>
       </div>
     </div>
-    <form class="searchform searchformcontainer" onsubmit="">
-      <div class="searchWrapper">
-        <label for="searchbar">Search a pokemon</label>
-        <input
-          id="searchbar"
-          name="searchbar"
-          class="searchbar searchbarinput"
-          type="text"
-          placeholder="Ex: Bulbasaur"
-          onblur="removeErrorMessage()"
-        />
-        <span class="error"></span>
-      </div>
-    </form>
-    <div class="btncontainer">
-      <button class="searchbarbtn mainbtn" onclick="">Search</button>
-      <button class="showall scndbtn" onclick="">Show All</button>
-    </div>
+    <section class="home">
+      <img src="./img/logo.svg" class="logo" />
 
-    <ul id="list"></ul>
-    <script src="./js/helper/loading.js"></script>
-    <script src="./js/fetchPokemons/endpoints.js"></script>
+      <form class="searchform searchformcontainer" onsubmit="">
+        <div class="searchWrapper">
+          <label for="searchbar">Search a pokemon</label>
+          <input
+            id="searchbar"
+            name="searchbar"
+            class="searchbar searchbarinput"
+            type="text"
+            placeholder="Ex: Bulbasaur"
+            onblur="removeErrorMessage()"
+          />
+          <span class="error"></span>
+        </div>
+      </form>
+      <div class="btncontainer">
+        <button class="searchbarbtn mainbtn" onclick="">Search</button>
+        <button class="showall scndbtn" onclick="">Show All</button>
+      </div>
+
+      <ul id="list"></ul>
+      <script src="./js/helper/loading.js"></script>
+      <script src="./js/fetchPokemons/endpoints.js"></script>
+    </section>
   </body>
 </html>
