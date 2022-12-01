@@ -88,6 +88,11 @@
   grid-column: 1/-1;
 }
 
+.pokedex-image {
+  max-width: 365px;
+  max-height: 400px;
+}
+
 .pokedex-types {
   display: flex;
   justify-content: center;
@@ -147,6 +152,7 @@
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   gap: 0 40px;
+  margin-top: 20px;
 }
 
 .pokemon-info-name {
