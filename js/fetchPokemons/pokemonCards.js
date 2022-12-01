@@ -124,8 +124,10 @@ function showSinglePokemonCard(data) {
 
 function sendDataOfPokemonToModal(event) {
   const pokeValue = event.currentTarget.querySelector(".pokename").innerText;
+  buildModal(pokeValue.toLowerCase());
 
-  console.log(pokeValue.toLowerCase());
+  const modal = document.querySelector("#pokedex");
+  modal.style.display = "block";
 }
 
 const form = document.querySelector(".searchform");
