@@ -1,28 +1,28 @@
 .pokemon-type-text {
   font: 400 1.75rem "Secular One";
   text-transform: uppercase;
-  color: #FFFFFF;
+  color: #ffffff;
   -webkit-text-stroke: 1px #000000;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border: 3px solid #FFFFFF;
+  border: 3px solid #ffffff;
   box-shadow: 0 0 0 3px #000000;
   border-radius: 24px;
   height: 3rem;
   padding: 0 10px;
 }
 
-@media(max-width: 1000px) {
+@media (max-width: 1000px) {
   .pokemon-type-text {
     font-size: 1.35rem;
     height: auto;
   }
 }
 
-@media(max-width: 700px) {
+@media (max-width: 700px) {
   .pokemon-type-text {
     font-size: 1.125rem;
     height: auto;
@@ -31,74 +31,78 @@
 
 /* BACKGROUND COLORS */
 .bug-bg {
-  background: linear-gradient(#98BB34 0%, #63691C 50%, #B1CA4B 100%);
+  background: linear-gradient(#98bb34 0%, #63691c 50%, #b1ca4b 100%);
 }
 
 .dark-bg {
-  background: linear-gradient(#4A321C 0%, #0B0C05 50%, #4F3C20 97%, #28140D 100%);
+  background: linear-gradient(
+    #4a321c 0%,
+    #0b0c05 50%,
+    #4f3c20 97%,
+    #28140d 100%
+  );
 }
 
 .dragon-bg {
-  background: linear-gradient(#B2A6FF 0%, #332258 52%, #B2A6FF 100%);
+  background: linear-gradient(#b2a6ff 0%, #332258 52%, #b2a6ff 100%);
 }
 
-.eletric-bg {
-  background: linear-gradient(#FFDD29 0%, #CF7E1E 52%, #FFDD29 100%);
+.electric-bg {
+  background: linear-gradient(#ffdd29 0%, #cf7e1e 52%, #ffdd29 100%);
 }
 
 .fairy-bg {
-  background: linear-gradient(#EBC0FF 0%, #CD7AE1 52%, #EBC0FF 100%);
+  background: linear-gradient(#ebc0ff 0%, #cd7ae1 52%, #ebc0ff 100%);
 }
 
 .fighting-bg {
-  background: linear-gradient(#77371B 0%, #23110B 52%, #77371B 100%);
+  background: linear-gradient(#77371b 0%, #23110b 52%, #77371b 100%);
 }
 
 .fire-bg {
-  background: linear-gradient(#DE803C 0%, #EE3030 52%, #DE803C 100%);
+  background: linear-gradient(#de803c 0%, #ee3030 52%, #de803c 100%);
 }
 
 .flying-bg {
-  background: linear-gradient(#B8CBEE 0%, #5B629D 52%, #B9D6F9 100%);
+  background: linear-gradient(#b8cbee 0%, #5b629d 52%, #b9d6f9 100%);
 }
 
 .ghost-bg {
-  background: linear-gradient(#5243B1 0%, #2E2374 52%, #7D6EDC 100%);
+  background: linear-gradient(#5243b1 0%, #2e2374 52%, #7d6edc 100%);
 }
 
 .grass-bg {
-  background: linear-gradient(#D5FA88 0%, #46A52E 52%, #E3FA88 100%);
+  background: linear-gradient(#d5fa88 0%, #46a52e 52%, #e3fa88 100%);
 }
 
 .ice-bg {
-  background: linear-gradient(#C9FFF8 0%, #49B7CF 52%, #C9FFF8 100%);
+  background: linear-gradient(#c9fff8 0%, #49b7cf 52%, #c9fff8 100%);
 }
 
 .normal-bg {
-  background: linear-gradient(#C8C2BA 0%, #877761 52%, #C8C2BA 100%);
+  background: linear-gradient(#c8c2ba 0%, #877761 52%, #c8c2ba 100%);
 }
 
 .poison-bg {
-  background: linear-gradient(#8F4594 0%, #4E2251 52%, #8F4594 100%);
+  background: linear-gradient(#8f4594 0%, #4e2251 52%, #8f4594 100%);
 }
 
 .psychic-bg {
-  background: linear-gradient(#EC457D 0%, #952349 52%, #EC457D 100%);
+  background: linear-gradient(#ec457d 0%, #952349 52%, #ec457d 100%);
 }
 
 .rock-bg {
-  background: linear-gradient(#B9A357 0%, #7B6824 52%, #B9A357 100%);
+  background: linear-gradient(#b9a357 0%, #7b6824 52%, #b9a357 100%);
 }
 
 .steel-bg {
-  background: linear-gradient(#CDCCD7 0%, #84829B 46%, #CDCCD7 100%);
+  background: linear-gradient(#cdccd7 0%, #84829b 46%, #cdccd7 100%);
 }
 
 .water-bg {
-  background: linear-gradient(#CDCCD7 0%, #2B6FB0 50%, #3B99F3 100%);
-  ;
+  background: linear-gradient(#cdccd7 0%, #2b6fb0 50%, #3b99f3 100%);
 }
 
 .ground-bg {
-  background: linear-gradient(#CAAC4B 0%, #7c6a2f 52%, #CAAC4B 100%);
+  background: linear-gradient(#caac4b 0%, #7c6a2f 52%, #caac4b 100%);
 }

@@ -48,7 +48,14 @@ function createPokemonCard(img, name, types) {
     <li onclick="sendDataOfPokemonToModal(event)">
       <img src="${img}">
       <span>${name}</span>
-      ${types.map(({ type }) => `<span>${type.name}</span>`).join("")} 
+      ${types
+        .map(
+          ({ type }) =>
+            `<span class="pokemon-type-text ${type.name.toLowerCase()}-bg">${
+              type.name
+            }</span>`
+        )
+        .join("")} 
     </li>
   `;
 }

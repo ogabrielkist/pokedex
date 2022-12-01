@@ -1,0 +1,42 @@
+.searchformcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.searchbarinput {
+  width: 80vw;
+  height: 3rem;
+  font-size: 1rem;
+  max-width: 500px;
+  background-color: #fff;
+  border: 1px solid #000;
+  padding: 12px;
+}
+
+.mainbtn,
+.scndbtn {
+  display: block;
+  background: linear-gradient(180deg, #f84848 0%, #b54b4b 100%);
+  border-radius: 5px;
+  padding: 1rem 1.5rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: white;
+  width: max-content;
+  font-size: 1rem;
+
+  cursor: pointer;
+}
+.scndbtn {
+  background: transparent;
+  color: #f84848;
+  border: 2px solid #f84848;
+}
+
+.btncontainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, auto));
+  justify-content: center;
+  margin-bottom: 4rem;
+}
