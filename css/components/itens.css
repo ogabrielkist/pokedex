@@ -1,0 +1,19 @@
+.itens #list li > img {
+  width: 64px;
+  height: 64px;
+}
+
+.itens #list li {
+  text-align: center;
+  display: grid;
+  place-items: center;
+  min-height: 150px;
+}
+
+.itens #list li:hover {
+  cursor: auto;
+}
+
+.itens #list li span {
+  font-size: 1rem;
+}

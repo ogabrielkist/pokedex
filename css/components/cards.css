@@ -1,4 +1,5 @@
-.home {
+.home,
+.itens {
   min-height: 100vh;
   padding: 3.75rem 1.25rem;
   background-color: #f8f8f8;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Items</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,23 +14,23 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <div class="loading-wrapper ativo">
+    <div class="loading-wrapper">
       <div class="loading">
         <img src="./img/pikachu-running.gif" alt="" /><span>Carregando...</span>
       </div>
     </div>
-    <section class="home">
+    <section class="itens">
       <img src="./img/logo.svg" class="logo" />
 
       <form class="searchform searchformcontainer" onsubmit="">
         <div class="searchWrapper">
-          <label for="searchbar">Search a pokemon</label>
+          <label for="searchbar">Search a item</label>
           <input
             id="searchbar"
             name="searchbar"
             class="searchbar searchbarinput"
             type="text"
-            placeholder="Ex: Bulbasaur"
+            placeholder="Ex: master-ball"
             onblur="removeErrorMessage()"
           />
           <span class="error"></span>
@@ -43,7 +43,7 @@
 
       <ul id="list"></ul>
       <script src="./js/helper/loading.js"></script>
-      <script src="./js/fetchPokemons/pokemonCards.js"></script>
+      <script src="./js/fetchItems/itemsCards.js"></script>
     </section>
   </body>
 </html>
