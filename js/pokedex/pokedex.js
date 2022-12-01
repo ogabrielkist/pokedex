@@ -2,6 +2,7 @@
 // buildModal("charizard");
 // buildModal("gengar");
 // buildModal("eevee");
+buildModal("gloom");
 
 async function buildModal(pokemonName) {
   HandleSelectedPokemon(pokemonName);
@@ -13,16 +14,20 @@ async function HandleSelectedPokemon(pokemonName) {
 
   const maxValueProgressBar = 200;
 
-  const actualTypeColor = getComputedStyle(document.documentElement).getPropertyValue(
-    `--${selectedPokemon.types[0].type.name}-color`
-  );
-  const actualTypeTextColor = getComputedStyle(document.documentElement).getPropertyValue(
-    `--${selectedPokemon.types[0].type.name}-text-color`
-  );
+  const actualTypeColor = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue(`--${selectedPokemon.types[0].type.name}-color`);
+  const actualTypeTextColor = getComputedStyle(
+    document.documentElement
+  ).getPropertyValue(`--${selectedPokemon.types[0].type.name}-text-color`);
 
   handlePokemonBasicInfo(selectedPokemon, actualTypeTextColor);
   handlePokemonTypeList(selectedPokemon);
-  handlePokemonAttributes(selectedPokemon, actualTypeColor, maxValueProgressBar);
+  handlePokemonAttributes(
+    selectedPokemon,
+    actualTypeColor,
+    maxValueProgressBar
+  );
 
   const quantityToList = 30;
   handlePokemonMovesList(selectedPokemon, quantityToList);
@@ -44,7 +49,9 @@ function handlePokemonBasicInfo(pokemon, actualTypeTextColor) {
   const pokeHeight = document.getElementById("height");
 
   const attributesLabels = document.querySelectorAll(".pokemon-info-name");
-  attributesLabels.forEach((label) => (label.style.color = actualTypeTextColor));
+  attributesLabels.forEach(
+    (label) => (label.style.color = actualTypeTextColor)
+  );
 
   pokeBG.classList.add(`${pokemon.types[0].type.name}-bg`);
   pokeImg.src = pokemon.sprites.other.dream_world.front_default;
@@ -67,15 +74,23 @@ function handlePokemonTypeList(pokemon) {
   });
 }
 
-function handlePokemonAttributes(pokemon, actualTypeColor, maxValueProgressBar) {
+function handlePokemonAttributes(
+  pokemon,
+  actualTypeColor,
+  maxValueProgressBar
+) {
   pokemon.stats.forEach((status) => {
     const attribute = document.getElementById(status.stat.name);
     attribute.innerText = status.base_stat;
   });
 
   pokemon.stats.forEach((status) => {
-    const attributeBar = document.getElementById(`${status.stat.name}-progress`);
-    const percentage = Math.round((status.base_stat * 100) / maxValueProgressBar);
+    const attributeBar = document.getElementById(
+      `${status.stat.name}-progress`
+    );
+    const percentage = Math.round(
+      (status.base_stat * 100) / maxValueProgressBar
+    );
     attributeBar.style.background = `linear-gradient(to right, ${actualTypeColor} ${percentage}%, #D6D6D6 0%)`;
   });
 }
@@ -100,7 +115,8 @@ async function handlePokemonEvolutionChain(pokemon) {
       basePoke: evoPoke.name,
       basePokeImg: (await getPokemonByName(evoPoke.name)).sprites.front_default,
       evoPoke: evoPoke.evolves_to,
-      evoPokeImg: (await getPokemonByName(evoPoke.evolves_to)).sprites.front_default,
+      evoPokeImg: (await getPokemonByName(evoPoke.evolves_to)).sprites
+        .front_default,
     };
     console.log(evolution);
     pokeEvolutionList.innerHTML += getPokemonEvolutionListItem(evolution);
@@ -147,7 +163,9 @@ async function handlePokemonWeaknessList(selectedPokemon) {
   pokeWeaknessList.innerHTML = "";
   selectedPokemon.types.forEach(async (type) => {
     const typeWeakness = await getTypeWeakness(type.type.url);
-    typeWeakness.forEach((type) => (pokeWeaknessList.innerHTML += getPokemonWeaknessListItem(type)));
+    typeWeakness.forEach(
+      (type) => (pokeWeaknessList.innerHTML += getPokemonWeaknessListItem(type))
+    );
   });
 }
 
@@ -204,7 +222,20 @@ function getPokemonWeaknessListItem(weaknessName) {
 
 const closeButton = document.querySelector(".close-button");
 if (closeButton) {
-  closeButton.addEventListener("click", (event) => {
-    console.log("clickou fechar");
-  });
+  closeButton.addEventListener("click", destroyModal);
 }
+
+function destroyModal() {
+  const pokedex = document.querySelector("#pokedex");
+  const pokedexScreen = document.querySelector(".pokedex-screen");
+  pokedexScreen.classList = "pokedex-screen pokedex-main-screen";
+  pokedex.style.display = "none";
+}
+
+const pokedex = document.querySelector("#pokedex");
+
+pokedex.addEventListener("click", (e) => {
+  if (e.target === pokedex) {
+    destroyModal();
+  }
+});

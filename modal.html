@@ -1,119 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokédex</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="shortcut icon" href="img/pokeball.svg" type="image/xml+svg" />
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pokédex</title>
-  <link rel="stylesheet" href="./css/style.css">
-  <link rel="shortcut icon" href="img/pokeball.svg" type="image/xml+svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Secular+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Secular+One&display=swap" rel="stylesheet">
-</head>
-
-<body id="pokedex">
-  <main class="pokedex">
-    <div class="pokedex-top">
-      <button class="close-button"></button>
-      <div class="pokedex-status">
-        <div class="red-circle"></div>
-        <div class="yellow-circle"></div>
-        <div class="green-circle"></div>
-      </div>
-    </div>
-
-    <section class="pokedex-screen pokedex-main-screen">
-      <h1>Digglet</h1>
-
-      <ul class="pokedex-types">
-        <li>
-          <span class="pokemon-type-text psychic-bg">Psychic</span>
-          <img src="./img/pokemon-types/symbols/psychic.svg" alt="">
-        </li>
-      </ul>
-
-      <div class="pokedex-image">
-        <img src="" alt="">
+  <body id="pokedex">
+    <main class="pokedex">
+      <div class="pokedex-top">
+        <button class="close-button"></button>
+        <div class="pokedex-status">
+          <div class="red-circle"></div>
+          <div class="yellow-circle"></div>
+          <div class="green-circle"></div>
+        </div>
       </div>
 
-      <div class="pokedex-attributes">
-        <span class="attribute-name">ATK</span>
-        <span id="attack" class="attribute-value">183</span>
-        <div id="attack-progress" class="attribute-progress"></div>
+      <section class="pokedex-screen pokedex-main-screen">
+        <h1>Digglet</h1>
 
-        <span class="attribute-name">DEF</span>
-        <span id="defense" class="attribute-value">183</span>
-        <div id="defense-progress" class="attribute-progress"></div>
-
-        <span class="attribute-name">SATK</span>
-        <span id="special-attack" class="attribute-value">183</span>
-        <div id="special-attack-progress" class="attribute-progress"></div>
-
-        <span class="attribute-name">SDEF</span>
-        <span id="special-defense" class="attribute-value">183</span>
-        <div id="special-defense-progress" class="attribute-progress"></div>
-
-        <span class="attribute-name">HP</span>
-        <span id="hp" class="attribute-value">183</span>
-        <div id="hp-progress" class="attribute-progress"></div>
-
-        <span class="attribute-name">SPEED</span>
-        <span id="speed" class="attribute-value">183</span>
-        <div id="speed-progress" class="attribute-progress"></div>
-      </div>
-
-      <div class="pokemon-info">
-        <span id="weight" class="pokemon-info-value">90.3KG</span>
-        <span id="height" class="pokemon-info-value">160CM</span>
-        <span class="pokemon-info-name">Weight</span>
-        <span class="pokemon-info-name">Height</span>
-      </div>
-    </section>
-
-    <section class="pokedex-screen pokedex-secondary-screen">
-      <div class="pokedex-evolutions">
-        <h2>Evolutions</h2>
-        <ul>
+        <ul class="pokedex-types">
           <li>
-            <div class="evolution-pokemon">
-              <img class="circle-bg" src="./img/evolution.png" alt="Digglet">
-              <span>Digglet</span>
-            </div>
-
-            <div class="evolution-arrow">
-              <img src="./img/icons/arrow.svg" alt="Evolui para">
-            </div>
-
-            <div class="evolution-pokemon">
-              <img class="circle-bg" src="./img/evolution.png" alt="Digglet">
-              <span>Digglet</span>
-            </div>
+            <span class="pokemon-type-text psychic-bg">Psychic</span>
+            <img src="./img/pokemon-types/symbols/psychic.svg" alt="" />
           </li>
         </ul>
-      </div>
 
-      <div class="pokedex-move">
-        <h2>Move List</h2>
-        <ul>
-          <li>Lorem</li>
-        </ul>
-      </div>
+        <div class="pokedex-image">
+          <img src="" alt="" />
+        </div>
 
-      <div class="pokedex-weakness">
-        <h2>Weakness</h2>
-        <ul>
-          <li>Water</li>
-        </ul>
-      </div>
+        <div class="pokedex-attributes">
+          <span class="attribute-name">ATK</span>
+          <span id="attack" class="attribute-value">183</span>
+          <div id="attack-progress" class="attribute-progress"></div>
 
-    </section>
+          <span class="attribute-name">DEF</span>
+          <span id="defense" class="attribute-value">183</span>
+          <div id="defense-progress" class="attribute-progress"></div>
 
-  </main>
+          <span class="attribute-name">SATK</span>
+          <span id="special-attack" class="attribute-value">183</span>
+          <div id="special-attack-progress" class="attribute-progress"></div>
 
-  <script src="./js/pokedex/pokedex.js"></script>
-</body>
+          <span class="attribute-name">SDEF</span>
+          <span id="special-defense" class="attribute-value">183</span>
+          <div id="special-defense-progress" class="attribute-progress"></div>
 
+          <span class="attribute-name">HP</span>
+          <span id="hp" class="attribute-value">183</span>
+          <div id="hp-progress" class="attribute-progress"></div>
+
+          <span class="attribute-name">SPEED</span>
+          <span id="speed" class="attribute-value">183</span>
+          <div id="speed-progress" class="attribute-progress"></div>
+        </div>
+
+        <div class="pokemon-info">
+          <span id="weight" class="pokemon-info-value">90.3KG</span>
+          <span id="height" class="pokemon-info-value">160CM</span>
+          <span class="pokemon-info-name">Weight</span>
+          <span class="pokemon-info-name">Height</span>
+        </div>
+      </section>
+
+      <section class="pokedex-screen pokedex-secondary-screen">
+        <div class="pokedex-evolutions">
+          <h2>Evolutions</h2>
+          <ul>
+            <li>
+              <div class="evolution-pokemon">
+                <img
+                  class="circle-bg"
+                  src="./img/evolution.png"
+                  alt="Digglet"
+                />
+                <span>Digglet</span>
+              </div>
+
+              <div class="evolution-arrow">
+                <img src="./img/icons/arrow.svg" alt="Evolui para" />
+              </div>
+
+              <div class="evolution-pokemon">
+                <img
+                  class="circle-bg"
+                  src="./img/evolution.png"
+                  alt="Digglet"
+                />
+                <span>Digglet</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pokedex-move">
+          <h2>Move List</h2>
+          <ul>
+            <li>Lorem</li>
+          </ul>
+        </div>
+
+        <div class="pokedex-weakness">
+          <h2>Weakness</h2>
+          <ul>
+            <li>Water</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <script src="./js/pokedex/pokedex.js"></script>
+  </body>
 </html>
