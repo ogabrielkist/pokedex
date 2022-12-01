@@ -1,5 +1,5 @@
-async function searchAllPokemons() {
-  const data = await fetch("https://pokeapi.co/api/v2/pokemon/");
+async function searchAllMoves() {
+  const data = await fetch("https://pokeapi.co/api/v2/move/");
   const json = await data.json();
   return json;
 }
@@ -13,15 +13,14 @@ async function getMoreData(currentDataCallback) {
   return json;
 }
 
-async function handlePokemonList() {
+async function handleItemList() {
   enableLoading();
 
   const list = document.querySelector("#list");
   list.innerHTML = "";
 
-  let currentDataPage = await searchAllPokemons();
-
-  addPokemonsInThePage(currentDataPage);
+  let currentDataPage = await searchAllMoves();
+  addItemsInThePage(currentDataPage);
 
   let wait = false;
   window.addEventListener("scroll", async () => {
@@ -35,7 +34,7 @@ async function handlePokemonList() {
         currentDataPage = await getMoreData(async () => {
           return currentDataPage;
         });
-        addPokemonsInThePage(currentDataPage);
+        addItemsInThePage(currentDataPage);
         disableLoading();
       }, 500);
     }
@@ -43,61 +42,51 @@ async function handlePokemonList() {
   disableLoading();
 }
 
-function createPokemonCard(img, name, types) {
+function createItemCard(type, name) {
   return `
-    <li onclick="sendDataOfPokemonToModal(event)">
-      <img src="${img}">
-      <span class="pokename">${name}</span>
-      ${types
-        .map(
-          ({ type }) =>
-            `<span class="pokemon-type-text ${type.name.toLowerCase()}-bg">${
-              type.name
-            }</span>`
-        )
-        .join("")} 
+    <li>
+      <span>${name.split("-").join(" ")}</span>
+      <span class="pokemon-type-text ${type}-bg">${type}</span>
     </li>
   `;
 }
 
-async function addPokemonsInThePage({ results }) {
+async function addItemsInThePage({ results }) {
   const list = document.querySelector("#list");
 
   results.forEach(async ({ name, url }) => {
     const data = await fetch(url);
     const json = await data.json();
 
-    list.innerHTML += createPokemonCard(
-      json.sprites.front_default,
-      name,
-      json.types
-    );
+    list.innerHTML += createItemCard(json.type.name, name);
   });
 }
 
-async function handlePokemonSearch(event) {
+async function handleItemSearch(event) {
   event.preventDefault();
 
-  const typedPokemon = document.querySelector(".searchbar").value.toLowerCase();
+  const typedItem = document
+    .querySelector(".searchbar")
+    .value.split(" ")
+    .join("-")
+    .toLowerCase();
   const error = document.querySelector(".error");
 
-  if (!typedPokemon.length) {
+  if (!typedItem.length) {
     error.innerText =
-      "Hey! you forgot to insert the name of the pokemon you want.";
-    handlePokemonList();
+      "Hey! you forgot to insert the name of the move you want.";
+    handleItemList();
     return;
   }
 
   enableLoading();
   try {
-    const data = await fetch(
-      "https://pokeapi.co/api/v2/pokemon/" + typedPokemon
-    );
+    const data = await fetch("https://pokeapi.co/api/v2/move/" + typedItem);
     json = await data.json();
 
-    showSinglePokemonCard(json);
+    showSingleItemCard(json);
   } catch (e) {
-    error.innerText = `Error: Pokemon with the name "${typedPokemon}" not found`;
+    error.innerText = `Error: Item with the name "${typedItem}" not found`;
   } finally {
     disableLoading();
   }
@@ -109,35 +98,25 @@ function removeErrorMessage() {
   error.innerText = "";
 }
 
-function showSinglePokemonCard(data) {
+function showSingleItemCard(data) {
   const list = document.querySelector("#list");
 
-  list.innerHTML = createPokemonCard(
-    data.sprites.front_default,
-    data.name,
-    data.types
-  );
+  list.innerHTML = createItemCard(data.sprites.default, data.name);
 
   const showAllbtn = document.querySelector(".showall");
   showAllbtn.style.display = "block";
 }
 
-function sendDataOfPokemonToModal(event) {
-  const pokeValue = event.currentTarget.querySelector(".pokename").innerText;
-
-  console.log(pokeValue.toLowerCase());
-}
-
 const form = document.querySelector(".searchform");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  handlePokemonSearch(event);
+  handleItemSearch(event);
 });
 
 const btn = document.querySelector(".searchbarbtn");
 btn.addEventListener("click", (event) => {
   event.preventDefault();
-  handlePokemonSearch(event);
+  handleItemSearch(event);
 });
 
 const showAllbtn = document.querySelector(".showall");
@@ -145,12 +124,12 @@ showAllbtn.addEventListener("click", async () => {
   enableLoading();
   showAllbtn.style.display = "none";
 
-  let currentDataPage = await searchAllPokemons();
+  let currentDataPage = await searchAllMoves();
   const list = document.querySelector("#list");
   list.innerHTML = "";
 
-  addPokemonsInThePage(currentDataPage);
+  addItemsInThePage(currentDataPage);
   disableLoading();
 });
 
-handlePokemonList();
+handleItemList();
