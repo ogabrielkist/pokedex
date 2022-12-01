@@ -60,3 +60,13 @@
   margin-bottom: 4rem;
   gap: 1rem;
 }
+
+.error {
+  margin: 1rem;
+}
+
+.searchWrapper > label {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
