@@ -1,7 +1,7 @@
 // buildModal("magikarp");
-// buildModal("gyarados");
-// buildModal("gyarados");
-buildModal("gyarados");
+// buildModal("charizard");
+// buildModal("gengar");
+buildModal("eevee");
 
 async function buildModal(pokemonName) {
   HandleSelectedPokemon(pokemonName);
@@ -11,52 +11,154 @@ async function HandleSelectedPokemon(pokemonName) {
   const selectedPokemon = await getPokemonByName(pokemonName);
   console.log(selectedPokemon);
 
-  const pokeBG = document.querySelector(".pokedex-main-screen");
-  const pokeImg = document.querySelector(".pokedex-image img");
-  const pokeName = document.querySelector(".pokedex-main-screen h1");
-  const pokeWeight = document.getElementById("weight");
-  const pokeHeight = document.getElementById("height");
-  const pokeTypesList = document.querySelector(".pokedex-types");
-  const pokeMovesList = document.querySelector(".pokedex-move ul");
-  const pokeWeaknessList = document.querySelector(".pokedex-weakness ul");
+  const maxValueProgressBar = 200;
 
-  pokeImg.src = selectedPokemon.sprites.other.dream_world.front_default;
-  pokeName.innerText = capitalize(selectedPokemon.name);
-  pokeBG.classList.add(`${selectedPokemon.types[0].type.name}-bg`);
+  const actualTypeColor = getComputedStyle(document.documentElement).getPropertyValue(
+    `--${selectedPokemon.types[0].type.name}-color`
+  );
+  const actualTypeTextColor = getComputedStyle(document.documentElement).getPropertyValue(
+    `--${selectedPokemon.types[0].type.name}-text-color`
+  );
 
-  //TO DO VARIAVEIS COM NOMES DO TIPO E VALOR DE COR
-  pokeName.style.color = "white";
-  pokeWeight.innerText = `${selectedPokemon.weight / 10} KG`;
-  pokeHeight.innerText = `${selectedPokemon.height / 10} M`;
+  handlePokemonBasicInfo(selectedPokemon, actualTypeTextColor);
+  handlePokemonTypeList(selectedPokemon);
+  handlePokemonAttributes(selectedPokemon, actualTypeColor, maxValueProgressBar);
 
-  pokeTypesList.innerHTML = "";
-  selectedPokemon.types.forEach((type) => {
-    pokeTypesList.innerHTML += getPokemonTypeListItem(type.type.name);
-  });
-
-  selectedPokemon.stats.forEach((status) => {
-    const attribute = document.getElementById(status.stat.name);
-    attribute.innerText = status.base_stat;
-  });
-
-  pokeMovesList.innerHTML = "";
-  for (let i = 0; i < selectedPokemon.moves.length - 1; i++) {
-    if (i > 30) {
-      break;
-    }
-    pokeMovesList.innerHTML += `<li>${selectedPokemon.moves[i].move.name}</li>`;
-  }
-
-  pokeWeaknessList.innerHTML = "";
-  selectedPokemon.types.forEach((type) => {
-    pokeWeaknessList.innerHTML += getPokemonEvolutionListItem(type.type.name);
-  });
+  const quantityToList = 30;
+  handlePokemonMovesList(selectedPokemon, quantityToList);
+  handlePokemonEvolutionChain(selectedPokemon);
+  handlePokemonWeaknessList(selectedPokemon);
 }
 
 async function getPokemonByName(name) {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
   const pokemon = await response.json();
   return pokemon;
+}
+
+function handlePokemonBasicInfo(pokemon, actualTypeTextColor) {
+  const pokeBG = document.querySelector(".pokedex-main-screen");
+  const pokeImg = document.querySelector(".pokedex-image img");
+  const pokeName = document.querySelector(".pokedex-main-screen h1");
+  const pokeWeight = document.getElementById("weight");
+  const pokeHeight = document.getElementById("height");
+
+  const attributesLabels = document.querySelectorAll(".pokemon-info-name");
+  attributesLabels.forEach((label) => (label.style.color = actualTypeTextColor));
+
+  pokeBG.classList.add(`${pokemon.types[0].type.name}-bg`);
+  pokeImg.src = pokemon.sprites.other.dream_world.front_default;
+
+  pokeName.innerText = capitalize(pokemon.name);
+  pokeName.style.color = actualTypeTextColor;
+
+  pokeWeight.innerText = `${pokemon.weight / 10} KG`;
+  pokeWeight.style.color = actualTypeTextColor;
+
+  pokeHeight.innerText = `${pokemon.height / 10} M`;
+  pokeHeight.style.color = actualTypeTextColor;
+}
+
+function handlePokemonTypeList(pokemon) {
+  const pokeTypesList = document.querySelector(".pokedex-types");
+  pokeTypesList.innerHTML = "";
+  pokemon.types.forEach((type) => {
+    pokeTypesList.innerHTML += getPokemonTypeListItem(type.type.name);
+  });
+}
+
+function handlePokemonAttributes(pokemon, actualTypeColor, maxValueProgressBar) {
+  pokemon.stats.forEach((status) => {
+    const attribute = document.getElementById(status.stat.name);
+    attribute.innerText = status.base_stat;
+  });
+
+  pokemon.stats.forEach((status) => {
+    const attributeBar = document.getElementById(`${status.stat.name}-progress`);
+    const percentage = Math.round((status.base_stat * 100) / maxValueProgressBar);
+    attributeBar.style.background = `linear-gradient(to right, ${actualTypeColor} ${percentage}%, #D6D6D6 0%)`;
+  });
+}
+
+function handlePokemonMovesList(selectedPokemon, quantityToList) {
+  const pokeMovesList = document.querySelector(".pokedex-move ul");
+  pokeMovesList.innerHTML = "";
+  for (let i = 0; i < selectedPokemon.moves.length - 1; i++) {
+    if (i > quantityToList) {
+      break;
+    }
+    pokeMovesList.innerHTML += `<li>${selectedPokemon.moves[i].move.name}</li>`;
+  }
+}
+
+async function handlePokemonEvolutionChain(pokemon) {
+  const pokeEvolutionList = document.querySelector(".pokedex-evolutions ul");
+  const pokeEvoChain = await getPokemonEvolutionChain(pokemon);
+  pokeEvolutionList.innerHTML = "";
+  pokeEvoChain.forEach(async (evoPoke) => {
+    const evolution = {
+      basePoke: evoPoke.name,
+      basePokeImg: (await getPokemonByName(evoPoke.name)).sprites.front_default,
+      evoPoke: evoPoke.evolves_to,
+      evoPokeImg: (await getPokemonByName(evoPoke.evolves_to)).sprites.front_default,
+    };
+    console.log(evolution);
+    pokeEvolutionList.innerHTML += getPokemonEvolutionListItem(evolution);
+  });
+}
+
+async function getPokemonEvolutionChain(pokemon) {
+  const species = await (await fetch(pokemon.species.url)).json();
+  let evoData = (await (await fetch(species.evolution_chain.url)).json()).chain;
+  let evoChain = [];
+
+  const initialPokemon = evoData.species.name;
+  const nextEvolutions = evoData.evolves_to;
+
+  if (nextEvolutions.length > 1) {
+    nextEvolutions.forEach(({ species }) => {
+      evoChain.push({ name: initialPokemon, evolves_to: species.name });
+    });
+  } else {
+    loop(initialPokemon, nextEvolutions);
+  }
+
+  function loop(currentPoke, nextEvolutions) {
+    if (nextEvolutions !== undefined && nextEvolutions.length > 1) {
+      nextEvolutions.forEach(({ species }) => {
+        evoChain.push({ name: currentPoke, evolves_to: species.name });
+      });
+      return;
+    }
+
+    if (nextEvolutions !== undefined) {
+      nextEvolutions.forEach(({ species, evolves_to }) => {
+        evoChain.push({ name: currentPoke, evolves_to: species.name });
+        loop(species.name, evolves_to);
+      });
+    }
+  }
+  return evoChain;
+}
+
+async function handlePokemonWeaknessList(selectedPokemon) {
+  const pokeWeaknessList = document.querySelector(".pokedex-weakness ul");
+
+  pokeWeaknessList.innerHTML = "";
+  selectedPokemon.types.forEach(async (type) => {
+    const typeWeakness = await getTypeWeakness(type.type.url);
+    typeWeakness.forEach((type) => (pokeWeaknessList.innerHTML += getPokemonWeaknessListItem(type)));
+  });
+}
+
+async function getTypeWeakness(url) {
+  const typeWeakness = await (await fetch(url)).json();
+  const allWeaknessTypes = typeWeakness.damage_relations.double_damage_from;
+  const typesNames = allWeaknessTypes.map((item) => {
+    return item.name;
+  });
+
+  return typesNames;
 }
 
 function capitalize(string) {
@@ -72,12 +174,12 @@ function getPokemonTypeListItem(typeName) {
   `;
 }
 
-function getPokemonEvolutionListItem(evolutionName, evolutionPhoto) {
+function getPokemonEvolutionListItem(evolution) {
   return `
     <li>
       <div class="evolution-pokemon">
-        <img class="circle-bg" src="${""}" alt="${""}">
-        <span>${""}</span>
+        <img class="circle-bg" src="${evolution.basePokeImg}" alt="${evolution.basePoke}">
+        <span>${evolution.basePoke}</span>
       </div>
 
       <div class="evolution-arrow">
@@ -85,9 +187,17 @@ function getPokemonEvolutionListItem(evolutionName, evolutionPhoto) {
       </div>
 
       <div class="evolution-pokemon">
-        <img class="circle-bg" src="${""}" alt="${""}">
-        <span>${""}</span>
+        <img class="circle-bg" src="${evolution.evoPokeImg}" alt="${evolution.evoPoke}">
+        <span>${evolution.evoPoke}</span>
       </div>
+    </li>
+  `;
+}
+
+function getPokemonWeaknessListItem(weaknessName) {
+  return `
+    <li>
+      ${capitalize(weaknessName)}
     </li>
   `;
 }

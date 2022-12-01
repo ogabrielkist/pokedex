@@ -1,0 +1,55 @@
+:root {
+  --bug-color: #63691C;
+  --bug-text-color: #2f320b;
+
+  --dark-color: #0B0C05;
+  --dark-text-color: #ffffff;
+
+  --dragon-color: #332258;
+  --dragon-text-color: #ffffff;
+
+  --electric-color: #CF7E1E;
+  --electric-text-color: #5b3201;
+
+  --fairy-color: #CD7AE1;
+  --fairy-text-color: #410051;
+
+  --fighting-color: #23110B;
+  --fighting-text-color: #23110B;
+
+  --fire-color: #ad2727;
+  --fire-text-color: #650d0d;
+
+  --flying-color: #5B629D;
+  --flying-text-color: #11195a;
+
+  --ghost-color: #2E2374;
+  --ghost-text-color: #090041;
+
+  --grass-color: #46A52E;
+  --grass-text-color: #0c3c00;
+
+  --ice-color: #49B7CF;
+  --ice-text-color: #17343b;
+
+  --normal-color: #877761;
+  --normal-text-color: #312b24;
+
+  --poison-color: #4E2251;
+  --poison-text-color: #200f22;
+
+  --psychic-color: #952349;
+  --psychic-text-color: #4e1326;
+
+  --rock-color: #7B6824;
+  --rock-text-color: #2f280e;
+
+  --steel-color: #84829B;
+  --steel-text-color: #2d2c36;
+
+  --water-color: #2B6FB0;
+  --water-text-color: #0e2132;
+
+  --ground: #7c6a2f;
+  --ground-text: #26200e;
+}
