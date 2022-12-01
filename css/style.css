@@ -1,8 +1,11 @@
 /* GLOBAL */
 @import "./global/reset.css";
+@import "./global/animation.css";
 @import "./global/typography.css";
-
 
 /* COMPONENTS */
 @import "./components/pokedex.css";
 @import "./components/pokemon-type.css";
+@import "./components/cards.css";
+@import "./components/searchform.css";
+@import "./components/loading.css";
