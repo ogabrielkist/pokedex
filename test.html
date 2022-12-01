@@ -5,11 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Secular+One&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <style>
       * {
         box-sizing: border-box;
+        font-family: "montserrat", Arial, Helvetica, sans-serif;
       }
       img {
         max-width: 100%;
@@ -27,25 +34,91 @@
 
       #list {
         display: grid;
-        grid-template-columns: repeat(auto-fit, 100px);
-        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(auto, 260px));
+        gap: 30px 60px;
         width: 100%;
       }
       #list li {
         padding: 1rem;
-        background-color: #eee;
+        background-color: #fff;
         display: flex;
-        max-width: max-content;
         flex-direction: column;
+        text-transform: uppercase;
+        align-items: center;
+        min-height: 245px;
+        border-radius: 5px;
+
+        box-shadow: 0px 4px 13px rgba(80, 139, 147, 0.25);
+      }
+
+      #list li span {
+        font-size: 1.5rem;
+        font-weight: 500;
       }
 
       li img {
-        width: 64px;
-        height: 64px;
-        background-color: #ddd;
-        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        background-color: #f3f3f3;
+        border-radius: 30px;
+        margin-bottom: 1rem;
+      }
+
+      .searchbar {
+        width: 80vw;
+        height: 3rem;
+        font-size: 1rem;
+        max-width: 500px;
+      }
+
+      .searchWrapper {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .searchWrapper label {
+        margin-bottom: 0.5rem;
+      }
+
+      .error {
+        color: red;
+      }
+
+      .searchform {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .showall {
+        display: none;
+        margin: 0 auto;
+      }
+
+      #list li {
+        cursor: pointer;
       }
     </style>
+    <form class="searchform" onsubmit="">
+      <div class="searchWrapper">
+        <label for="searchbar">Search a pokemon</label>
+        <input
+          id="searchbar"
+          name="searchbar"
+          class="searchbar"
+          type="text"
+          placeholder="Ex: Bulbasaur"
+          onblur="removeErrorMessage()"
+        />
+        <span class="error"></span>
+      </div>
+      <button class="searchbarbtn" onclick="">Search</button>
+    </form>
+    <button class="showall" onclick="">Show All</button>
+
     <ul id="list"></ul>
     <script src="./js/fetchPokemons/endpoints.js"></script>
   </body>
