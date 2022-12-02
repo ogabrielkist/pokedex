@@ -1,5 +1,8 @@
 function buildModal(pokemonName) {
   HandleSelectedPokemon(pokemonName);
+
+  const modal = document.querySelector("#pokedex");
+  modal.scrollTo(0, 0);
 }
 
 async function HandleSelectedPokemon(pokemonName) {
@@ -169,7 +172,7 @@ function getPokemonTypeListItem(typeName) {
 function getPokemonEvolutionListItem(evolution) {
   return `
     <li>
-      <div class="evolution-pokemon">
+      <div class="evolution-pokemon" onclick="buildModal('${evolution.basePoke}')">
         <img class="circle-bg" src="${evolution.basePokeImg}" alt="">
         <span>${evolution.basePoke}</span>
       </div>
@@ -178,7 +181,7 @@ function getPokemonEvolutionListItem(evolution) {
         <img src="./img/icons/arrow.svg" alt="Evolui para">
       </div>
 
-      <div class="evolution-pokemon">
+      <div class="evolution-pokemon"" onclick="buildModal('${evolution.evoPoke}')">
         <img class="circle-bg" src="${evolution.evoPokeImg}" alt="">
         <span>${evolution.evoPoke}</span>
       </div>

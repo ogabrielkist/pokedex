@@ -33,8 +33,6 @@
 /* BACKGROUND COLORS */
 .bug-bg {
   background: linear-gradient(#98BB34 0%, #63691C 50%, #B1CA4B 100%);
-  letter-spacing: 0.535em;
-  padding-right: 0;
 }
 
 .dark-bg {
@@ -59,8 +57,6 @@
 
 .fire-bg {
   background: linear-gradient(#DE803C 0%, #EE3030 52%, #DE803C 100%);
-  letter-spacing: 0.41em;
-  padding-right: 0;
 }
 
 .flying-bg {
@@ -77,8 +73,6 @@
 
 .ice-bg {
   background: linear-gradient(#C9FFF8 0%, #49B7CF 52%, #C9FFF8 100%);
-  letter-spacing: 0.535em;
-  padding-right: 0;
 }
 
 .normal-bg {

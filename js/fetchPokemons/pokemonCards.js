@@ -117,7 +117,7 @@ function sendDataOfPokemonToModal(event) {
 function showModal() {
   const modal = document.querySelector("#pokedex");
   modal.style.display = "block";
-  disableLoading();
+  disableLoading("hidden");
 }
 
 const form = document.querySelector(".searchform");
