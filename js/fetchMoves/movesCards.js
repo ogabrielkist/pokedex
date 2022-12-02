@@ -13,14 +13,14 @@ async function getMoreData(currentDataCallback) {
   return json;
 }
 
-async function handleItemList() {
+async function handleMoveItem() {
   enableLoading();
 
   const list = document.querySelector("#list");
   list.innerHTML = "";
 
   let currentDataPage = await searchAllMoves();
-  addItemsInThePage(currentDataPage);
+  addMovesInThePage(currentDataPage);
 
   let wait = false;
   window.addEventListener("scroll", async () => {
@@ -34,7 +34,7 @@ async function handleItemList() {
         currentDataPage = await getMoreData(async () => {
           return currentDataPage;
         });
-        addItemsInThePage(currentDataPage);
+        addMovesInThePage(currentDataPage);
         disableLoading();
       }, 500);
     }
@@ -42,7 +42,7 @@ async function handleItemList() {
   disableLoading();
 }
 
-function createItemCard(type, name) {
+function createMoveCard(type, name) {
   return `
     <li>
       <span>${name.split("-").join(" ")}</span>
@@ -51,42 +51,42 @@ function createItemCard(type, name) {
   `;
 }
 
-async function addItemsInThePage({ results }) {
+async function addMovesInThePage({ results }) {
   const list = document.querySelector("#list");
 
   results.forEach(async ({ name, url }) => {
     const data = await fetch(url);
     const json = await data.json();
 
-    list.innerHTML += createItemCard(json.type.name, name);
+    list.innerHTML += createMoveCard(json.type.name, name);
   });
 }
 
-async function handleItemSearch(event) {
+async function handleMoveSearch(event) {
   event.preventDefault();
 
-  const typedItem = document
+  const typedMove = document
     .querySelector(".searchbar")
     .value.split(" ")
     .join("-")
     .toLowerCase();
   const error = document.querySelector(".error");
 
-  if (!typedItem.length) {
+  if (!typedMove.length) {
     error.innerText =
       "Hey! you forgot to insert the name of the move you want.";
-    handleItemList();
+    handleMoveItem();
     return;
   }
 
   enableLoading();
   try {
-    const data = await fetch("https://pokeapi.co/api/v2/move/" + typedItem);
+    const data = await fetch("https://pokeapi.co/api/v2/move/" + typedMove);
     json = await data.json();
 
-    showSingleItemCard(json);
+    showSingleMoveCard(json);
   } catch (e) {
-    error.innerText = `Error: Item with the name "${typedItem}" not found`;
+    error.innerText = `Error: Item with the name "${typedMove}" not found`;
   } finally {
     disableLoading();
   }
@@ -98,10 +98,10 @@ function removeErrorMessage() {
   error.innerText = "";
 }
 
-function showSingleItemCard(data) {
+function showSingleMoveCard(data) {
   const list = document.querySelector("#list");
 
-  list.innerHTML = createItemCard(data.sprites.default, data.name);
+  list.innerHTML = createMoveCard(data.sprites.default, data.name);
 
   const showAllbtn = document.querySelector(".showall");
   showAllbtn.style.display = "block";
@@ -110,13 +110,13 @@ function showSingleItemCard(data) {
 const form = document.querySelector(".searchform");
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  handleItemSearch(event);
+  handleMoveSearch(event);
 });
 
 const btn = document.querySelector(".searchbarbtn");
 btn.addEventListener("click", (event) => {
   event.preventDefault();
-  handleItemSearch(event);
+  handleMoveSearch(event);
 });
 
 const showAllbtn = document.querySelector(".showall");
@@ -128,8 +128,8 @@ showAllbtn.addEventListener("click", async () => {
   const list = document.querySelector("#list");
   list.innerHTML = "";
 
-  addItemsInThePage(currentDataPage);
+  addMovesInThePage(currentDataPage);
   disableLoading();
 });
 
-handleItemList();
+handleMoveItem();

@@ -10,6 +10,7 @@
 @import "./components/searchform.css";
 @import "./components/loading.css";
 @import "./components/itens.css";
+@import "./components/types.css";
 
 /* HOME */
 @import "./home/home.css";
