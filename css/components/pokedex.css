@@ -30,10 +30,16 @@
   height: 148px;
   position: absolute;
   z-index: 1;
-  background: url("../../img/icons/close-button.svg") no-repeat;
-  background-size: contain;
+  background: url("../../img/icons/close-button.svg") no-repeat center;
+  background-size: cover;
   left: -75px;
   top: -65px;
+
+  transition: .3s ease;
+}
+
+.close-button:hover:before {
+  transform: scale(1.08);
 }
 
 .pokedex-top {
