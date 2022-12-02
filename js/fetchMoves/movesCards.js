@@ -82,8 +82,7 @@ async function handleMoveSearch(event) {
   enableLoading();
   try {
     const data = await fetch("https://pokeapi.co/api/v2/move/" + typedMove);
-    json = await data.json();
-
+    const json = await data.json();
     showSingleMoveCard(json);
   } catch (e) {
     error.innerText = `Error: Item with the name "${typedMove}" not found`;
@@ -101,7 +100,7 @@ function removeErrorMessage() {
 function showSingleMoveCard(data) {
   const list = document.querySelector("#list");
 
-  list.innerHTML = createMoveCard(data.sprites.default, data.name);
+  list.innerHTML = createMoveCard(data.type.name, data.name);
 
   const showAllbtn = document.querySelector(".showall");
   showAllbtn.style.display = "block";
