@@ -1,0 +1,21 @@
+.types #list li span {
+  display: block;
+}
+
+.types {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.types #list {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.types #list li {
+  min-height: 120px;
+  justify-content: center;
+}
+
+.types #list li .pokemon-type-text {
+  margin-top: 0px;
+}
