@@ -19,11 +19,8 @@
   padding-bottom: 100px;
 }
 
-.pokedex .close-button {
-  display: inline-block;
-}
-
 .close-button {
+  display: inline-block;
   position: relative;
 }
 
@@ -33,7 +30,8 @@
   height: 148px;
   position: absolute;
   z-index: 1;
-  background: url("../../img/close-button.svg");
+  background: url("../../img/icons/close-button.svg") no-repeat;
+  background-size: contain;
   left: -75px;
   top: -65px;
 }
@@ -265,7 +263,20 @@
   color: #6b6b6b;
 }
 
+.disappear-scroll {
+  overflow: hidden;
+}
+
 @media (max-width: 1100px) {
+  #pokedex {
+    padding: 0;
+  }
+
+  .close-button::before {
+    left: -20px;
+    top: -25px;
+  }
+
   .pokedex-screen {
     padding: 15px 20px 25px;
   }
@@ -350,6 +361,11 @@
   .attribute-value {
     font-size: 1rem;
   }
+
+  .close-button::before {
+    width: 64px;
+    height: 64px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -406,15 +422,6 @@
     grid-row: 3;
   }
 
-  .pokedex-evolutions li div:first-child,
-  .pokedex-evolutions li div:nth-child(2) {
-    display: none;
-  }
-
-  .evolution-pokemon img {
-    width: 128px;
-  }
-
   .attribute-name {
     justify-self: initial;
   }
@@ -430,5 +437,17 @@
 
   .pokedex-secondary-screen h2 {
     text-align: center;
+  }
+}
+
+@media (max-width: 300px) {
+
+  .pokedex-evolutions li div:first-child,
+  .pokedex-evolutions li div:nth-child(2) {
+    display: none;
+  }
+
+  .evolution-pokemon img {
+    width: 128px;
   }
 }
