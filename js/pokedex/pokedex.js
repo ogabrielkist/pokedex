@@ -1,8 +1,6 @@
 function buildModal(pokemonName) {
   HandleSelectedPokemon(pokemonName);
-
-  const modal = document.querySelector("#pokedex");
-  modal.scrollTo(0, 0);
+  document.querySelector("#pokedex").scrollTo(0, 0);
 }
 
 async function HandleSelectedPokemon(pokemonName) {
@@ -211,10 +209,15 @@ if (closeButton) {
 }
 
 function destroyModal() {
-  const pokedex = document.querySelector("#pokedex");
+  const pokedexModal = document.querySelector("#pokedex");
+  const pokedexItem = document.querySelector(".pokedex");
   const pokedexScreen = document.querySelector(".pokedex-screen");
   pokedexScreen.classList = "pokedex-screen pokedex-main-screen";
-  pokedex.style.display = "none";
+
+  pokedexModal.classList.remove("showing-modal");
+  pokedexModal.classList.add("not-showing-modal");
+  pokedexItem.classList.remove("showing-modal");
+  pokedexItem.classList.add("not-showing-modal");
   document.body.style.overflow = "auto";
 }
 
