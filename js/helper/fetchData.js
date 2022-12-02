@@ -1,3 +1,5 @@
+let isOnASinglePokemonPage = false;
+
 async function fetchAllItems(endpoint) {
   const data = await fetch("https://pokeapi.co/api/v2/" + endpoint);
   const json = await data.json();
@@ -24,8 +26,10 @@ async function handleDataCardsList(listId, endpoint) {
   addCardsInThePage(currentDataPage, endpoint);
 
   let wait = false;
-  window.addEventListener("scroll", async () => {
+  window.addEventListener("scroll", async function infiniteScroll() {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+    if (isOnASinglePokemonPage) return;
 
     if (scrollTop + clientHeight >= scrollHeight - 5 && !wait) {
       enableLoading();
@@ -81,9 +85,11 @@ async function handleSearchData(event, endpoint, type) {
   if (!typedText.length) {
     error.innerText = `Hey! you forgot to insert the name of the ${type} you want.`;
     handleDataCardsList("#list", endpoint);
+    isOnASinglePokemonPage = true;
     return;
   }
 
+  isOnASinglePokemonPage = true;
   enableLoading();
   try {
     const data = await fetch(
@@ -109,4 +115,33 @@ function removeErrorMessage() {
   const error = document.querySelector(".error");
 
   error.innerText = "";
+}
+
+function addListenerToButtons(endpoint, type) {
+  const showAllbtn = document.querySelector(".showall");
+
+  showAllbtn.addEventListener("click", async () => {
+    enableLoading();
+    showAllbtn.style.display = "none";
+
+    let currentDataPage = await fetchAllItems(endpoint);
+    const list = document.querySelector("#list");
+    list.innerHTML = "";
+
+    addCardsInThePage(currentDataPage, endpoint);
+    isOnASinglePokemonPage = false;
+    disableLoading();
+  });
+
+  const form = document.querySelector(".searchform");
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    handleSearchData(event, endpoint, type);
+  });
+
+  const btn = document.querySelector(".searchbarbtn");
+  btn.addEventListener("click", (event) => {
+    event.preventDefault();
+    handleSearchData(event, endpoint, type);
+  });
 }

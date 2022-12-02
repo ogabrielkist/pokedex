@@ -19,29 +19,5 @@ function showSingleMoveCard(data) {
   showAllbtn.style.display = "block";
 }
 
-const form = document.querySelector(".searchform");
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  handleSearchData(event, endpoint, "move");
-});
-
-const btn = document.querySelector(".searchbarbtn");
-btn.addEventListener("click", (event) => {
-  event.preventDefault();
-  handleSearchData(event, endpoint, "move");
-});
-
-const showAllbtn = document.querySelector(".showall");
-showAllbtn.addEventListener("click", async () => {
-  enableLoading();
-  showAllbtn.style.display = "none";
-
-  let currentDataPage = await fetchAllItems(endpoint);
-  const list = document.querySelector("#list");
-  list.innerHTML = "";
-
-  addCardsInThePage(currentDataPage, endpoint);
-  disableLoading();
-});
-
+addListenerToButtons(endpoint, "move");
 handleDataCardsList(listId, endpoint);
