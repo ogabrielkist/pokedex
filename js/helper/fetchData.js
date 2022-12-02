@@ -35,8 +35,8 @@ async function handleDataCardsList(listId, endpoint) {
         currentDataPage = await getMoreData(async () => {
           return currentDataPage;
         });
-        if (!currentDataPage) return;
 
+        if (!currentDataPage) return;
         addCardsInThePage(currentDataPage, endpoint);
         disableLoading();
       }, 500);
