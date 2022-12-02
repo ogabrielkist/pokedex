@@ -83,7 +83,11 @@ function handlePokemonMovesList(selectedPokemon, quantityToList) {
     if (i > quantityToList) {
       break;
     }
-    pokeMovesList.innerHTML += `<li>${selectedPokemon.moves[i].move.name}</li>`;
+    pokeMovesList.innerHTML += `
+    <li>
+      ${selectedPokemon.moves[i].move.name}
+    </li>
+    `;
   }
 }
 
@@ -172,7 +176,9 @@ function getPokemonTypeListItem(typeName) {
 function getPokemonEvolutionListItem(evolution) {
   return `
     <li>
-      <div class="evolution-pokemon" onclick="buildModal('${evolution.basePoke}')">
+      <div 
+        class="evolution-pokemon" onclick="buildModal('${evolution.basePoke}')"
+      >
         <img class="circle-bg" src="${evolution.basePokeImg}" alt="">
         <span>${evolution.basePoke}</span>
       </div>
@@ -181,7 +187,9 @@ function getPokemonEvolutionListItem(evolution) {
         <img src="./img/icons/arrow.svg" alt="Evolui para">
       </div>
 
-      <div class="evolution-pokemon"" onclick="buildModal('${evolution.evoPoke}')">
+      <div 
+        class="evolution-pokemon"" onclick="buildModal('${evolution.evoPoke}')"
+      >
         <img class="circle-bg" src="${evolution.evoPokeImg}" alt="">
         <span>${evolution.evoPoke}</span>
       </div>

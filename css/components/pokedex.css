@@ -91,6 +91,12 @@
   font-size: 8rem;
   color: #4d3b26;
   grid-column: 1/-1;
+
+  transition: .3s ease;
+}
+
+.pokedex-screen h1:hover {
+  transform: scale(1.05);
 }
 
 .pokedex-image {
@@ -100,6 +106,12 @@
 .pokedex-image img {
   width: 100%;
   max-height: 400px;
+
+  transition: 0.3s ease-out;
+}
+
+.pokedex-image img:hover {
+  transform: scale(1.1);
 }
 
 .pokedex-types {
@@ -112,6 +124,12 @@
 .pokedex-types img {
   width: 100px;
   height: 100px;
+
+  transition: .3s ease-out;
+}
+
+.pokedex-types img:hover {
+  transform: scale(1.1);
 }
 
 .pokedex-types li {
@@ -132,6 +150,12 @@
   background: #ffffff;
   padding: 25px;
   border-radius: 5px;
+
+  transition: .3s ease;
+}
+
+.pokedex-attributes:hover {
+  transform: scale(1.05);
 }
 
 .attribute-name {
@@ -221,6 +245,16 @@
 .evolution-pokemon img {
   width: 128px;
   height: auto;
+  cursor: pointer;
+  transition: 0.4s ease-out;
+}
+
+.evolution-pokemon img:hover {
+  transform: scale(1.05);
+  box-shadow:
+    2px 0 7px #fff,
+    2px 0 10px #fff,
+    2px 0 21px #000
 }
 
 .circle-bg {
@@ -249,6 +283,13 @@
   border: 1px solid #4f4f4f;
   border-radius: 20px;
   padding: 18px;
+
+  transition: .3s ease;
+}
+
+.pokedex-move li:hover {
+  transform: scale(1.05);
+  box-shadow: 0 1px 4px #000;
 }
 
 .pokedex-weakness ul {
