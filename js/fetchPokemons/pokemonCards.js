@@ -109,7 +109,7 @@ function showSinglePokemonCard(data) {
 function sendDataOfPokemonToModal(event) {
   enableLoading();
   const pokeValue = event.currentTarget.querySelector(".pokename").innerText;
-  const img = document.querySelector(".pokedex-image img").addEventListener("load", showModal);
+  document.querySelector(".pokedex-image img").addEventListener("load", showModal);
   buildModal(pokeValue.toLowerCase());
   disableLoading("hidden");
 }
@@ -117,6 +117,7 @@ function sendDataOfPokemonToModal(event) {
 function showModal() {
   const modal = document.querySelector("#pokedex");
   modal.style.display = "block";
+  disableLoading();
 }
 
 const form = document.querySelector(".searchform");
