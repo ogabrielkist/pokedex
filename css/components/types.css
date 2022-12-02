@@ -13,7 +13,7 @@
 
 .types #list li {
   min-height: 120px;
-  align-items: center;
+  justify-content: center;
 }
 
 .types #list li .pokemon-type-text {
