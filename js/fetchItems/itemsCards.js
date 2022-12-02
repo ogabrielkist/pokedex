@@ -83,7 +83,7 @@ async function handleItemSearch(event) {
   enableLoading();
   try {
     const data = await fetch("https://pokeapi.co/api/v2/item/" + typedItem);
-    json = await data.json();
+    const json = await data.json();
 
     showSingleItemCard(json);
   } catch (e) {
