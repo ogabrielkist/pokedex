@@ -6,7 +6,7 @@ async function fetchAllItems(endpoint) {
 
 async function getMoreData(currentDataCallback) {
   const endpoint = (await currentDataCallback()).next;
-
+  if (!endpoint) return;
   const data = await fetch(endpoint);
   const json = await data.json();
 
@@ -35,6 +35,8 @@ async function handleDataCardsList(listId, endpoint) {
         currentDataPage = await getMoreData(async () => {
           return currentDataPage;
         });
+        if (!currentDataPage) return;
+
         addCardsInThePage(currentDataPage, endpoint);
         disableLoading();
       }, 500);

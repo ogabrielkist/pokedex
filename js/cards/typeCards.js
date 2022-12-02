@@ -1,17 +1,14 @@
-async function searchAllTypes() {
-  const data = await fetch("https://pokeapi.co/api/v2/type/");
-  const json = await data.json();
-  return json;
-}
+const idList = "#list";
+const endpoint = "type/";
 
 async function handleTypeItem() {
   enableLoading();
 
-  const list = document.querySelector("#list");
+  const list = document.querySelector(idList);
   list.innerHTML = "";
 
-  let currentDataPage = await searchAllTypes();
-  addTypeCardsInThePage(currentDataPage);
+  let currentDataPage = await fetchAllItems(endpoint);
+  addCardsInThePage(currentDataPage, endpoint);
 
   disableLoading();
 }
@@ -24,14 +21,6 @@ function createTypeCard(name) {
       <span class="pokemon-type-text ${name}-bg">${name}</span>
     </li>
   `;
-}
-
-async function addTypeCardsInThePage({ results }) {
-  const list = document.querySelector("#list");
-
-  results.forEach(async ({ name }) => {
-    list.innerHTML += createTypeCard(name);
-  });
 }
 
 handleTypeItem();
