@@ -7,10 +7,10 @@
 
 .logo {
   display: block;
-  width: 100vw;
   max-width: 400px;
   margin: 0 auto;
 }
+
 #list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(auto, 260px));
@@ -20,6 +20,7 @@
   margin: 0 auto;
   justify-content: center;
 }
+
 #list li {
   background-color: #fff;
   box-shadow: 0px 4px 3px rgba(80, 139, 147, 0.25);
@@ -48,6 +49,7 @@
 #list li .pokemon-type-text {
   margin-top: 1rem;
 }
+
 #list li img {
   width: 120px;
   height: 120px;
