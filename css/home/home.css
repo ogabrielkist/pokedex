@@ -92,7 +92,6 @@
   background: linear-gradient(#FDDD6A 0%, #F29172 100%);
 }
 
-
 @media(max-width:700px) {
   .menu-links {
     grid-template-columns: 1fr;
