@@ -228,6 +228,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 15px;
 
   font-weight: 300;
@@ -239,6 +240,7 @@
 .pokedex-evolutions li {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
 }
 
@@ -454,6 +456,7 @@
   }
 
   .pokedex-evolutions li {
+    width: 100%;
     gap: 0;
   }
 
@@ -513,8 +516,15 @@
 }
 
 @media (max-width: 300px) {
+  .pokedex-evolutions li {
+    flex-direction: column;
+    gap: 15px;
+  }
 
-  .pokedex-evolutions li div:first-child,
+  .pokedex-evolutions li:nth-child(2) .evolution-pokemon:first-child {
+    display: none;
+  }
+
   .pokedex-evolutions li div:nth-child(2) {
     display: none;
   }
