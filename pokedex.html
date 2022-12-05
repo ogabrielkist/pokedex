@@ -1,23 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="shortcut icon"
-      href="./img/icons/pokeball.svg"
-      type="image/xml+svg"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Secular+One&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./css/style.css" />
-  </head>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pokédex</title>
+  <link rel="shortcut icon" href="./img/icons/pokeball.svg" type="image/xml+svg" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Secular+One&display=swap" rel="stylesheet" />
+  <meta name="description" content="Know more about your Pokémon, like it's attributes points, types, weakness, and moves in this Pokédex">.
+</head>
 
   <body id="cards">
     <div class="loading-wrapper ativo">
@@ -44,7 +39,24 @@
               <img src="./img/pokemon-types/symbols/psychic.svg" alt="" />
             </li>
           </ul>
+          
+        <div class="pokedex-weakness">
+          <h2>Weakness</h2>
+          <ul>
+            <li>Water</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+  <section class="home">
+    <a href="./index.html"><img src="./img/logo.svg" class="logo" alt="Pokédex" /></a>
 
+    <form class="searchform searchformcontainer" onsubmit="">
+      <div class="searchWrapper">
+        <label for="searchbar">Search a pokemon</label>
+        <input id="searchbar" name="searchbar" class="searchbar searchbarinput" type="text" placeholder="Ex: Bulbasaur" onblur="removeErrorMessage()" />
+        <span class="error"></span>
           <div class="pokedex-image">
             <img src="" alt="" />
           </div>
@@ -117,6 +129,7 @@
             </ul>
           </div>
         </section>
+
       </div>
     </div>
     <section class="home">
