@@ -1,0 +1,36 @@
+.close-button {
+  display: inline-block;
+  position: relative;
+}
+
+.close-button::before {
+  content: "";
+  width: 148px;
+  height: 148px;
+  position: absolute;
+  z-index: 1;
+  background: url("../../img/icons/close-button.svg") no-repeat center;
+  background-size: cover;
+  left: -75px;
+  top: -65px;
+
+  transition: .3s ease;
+}
+
+.close-button:hover:before {
+  transform: scale(1.08);
+}
+
+@media (max-width: 1100px) {
+  .close-button::before {
+    left: -20px;
+    top: -25px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .close-button::before {
+    width: 64px;
+    height: 64px;
+  }
+}

@@ -4,7 +4,10 @@
 @import "./global/typography.css";
 
 /* COMPONENTS */
-@import "./components/pokedex.css";
+@import "./components/pokedex/pokedex.css";
+@import "./components/pokedex/main-screen.css";
+@import "./components/pokedex/secondary-screen.css";
+@import "./components/close-button.css";
 @import "./components/pokemon-type.css";
 @import "./components/cards.css";
 @import "./components/searchform.css";
